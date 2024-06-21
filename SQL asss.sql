@@ -62,3 +62,34 @@ level
 FROM employee_hierarchy m;
 
 
+-----4
+
+CREATE TABLE CT(
+[Date] DATE PRIMARY KEY,
+DayOfYear INT,
+Week INT,
+DayOfWeek INT,s
+Month INT,
+DayOfMonth INT
+)
+
+DECLARE @year INT = 2024
+DECLARE @date DATE = CONCAT(@year, '/01/01')
+
+WHILE (YEAR(@date)=@year)
+BEGIN
+	INSERT INTO CT VALUES (
+		@date,
+		DATEPART(DAYOFYEAR, @date),
+		DATEPART(WEEKDAY, @date),
+		DATEPART(WEEK, @date),
+		DATEPART(MONTH, @date),
+		DATEPART(DAY, @date)
+	)
+	SET @date = DATEADD(d, 1, @date)
+END
+
+SELECT * FROM CT;
+
+
+
