@@ -38,13 +38,13 @@ managerID INT
 )
  
 INSERT INTO empH VALUES
-(1, 'A', NULL),
-(2, 'B', 1),
-(3, 'C', 1),
-(4, 'D', 2),
-(5, 'E', 3),
-(6, 'F', 3),
-(7, 'G', 4)
+(1, 'lu', NULL),
+(2, 'li', 1),
+(3, 'la', 1),
+(4, 'lo', 2),
+(5, 'le', 5),
+(6, 'ls', 6),
+(7, 'lc', 6)
  
 WITH employee_hierarchy AS (
   SELECT EmpID , empName, managerID, 1 as level
@@ -60,6 +60,7 @@ SELECT EmpID, empName,
 SELECT managerID FROM empH WHERE m.EmpID=EmpID)) AS managerName,
 level
 FROM employee_hierarchy m;
+
 
 
 -----4
