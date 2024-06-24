@@ -100,7 +100,6 @@ FROM
 -------------------------------------------------------------------------
 -------2
 
-drop table orders
 CREATE TABLE pd ( p_id int , p_name varchar(30), c_id int, price int); 
 insert into pd values (1 , 'mucnch' , 11 , 10)
 insert into pd values (2, 'dm' , 11 , 10)
@@ -125,3 +124,252 @@ WHERE o.order_date <= '2024-6-2'
 GROUP BY c.c_id;
 
 -------------------------------------------------------------------------------------------
+---------------------------4
+	
+
+create table students( student_id int, student_name varchar(30), student_major varchar(30));
+
+create table courses( course_id int, course_name varchar(30), course_department varchar(30));
+
+create table enrollments( enrollment_id int, student_id int, course_id int, enrollment_date date);
+
+create table grades ( grade_id int, enrollment_id int, grade_value int);
+ 
+ 
+INSERT INTO students (student_id, student_name, student_major)
+
+VALUES (1221, 'keyaa', 'cse'),
+
+       (1222, 'srinivas', 'Math'),
+
+       (1223, 'purendar', 'History'),
+
+       (1224, 'bruce lee', 'Engineering'),
+
+       (1225, 'Ema Watson', 'Biology');
+ 
+ 
+INSERT INTO courses (course_id, course_name, course_department)
+
+VALUES (101, 'ajile', 'cse'),
+
+       (102, 'statistics', 'Math'),
+
+       (103, 'history of madgascar', 'History'),
+
+       (104, 'Mechanics', 'Engineering'),
+
+       (105, 'human anotomy', 'Biology');
+ 
+INSERT INTO enrollments (enrollment_id, student_id, course_id, enrollment_date)
+
+VALUES (1, 1221, 101, '2003-06-21'),
+
+       (2, 1222, 102, '2003-06-21'),
+
+       (3, 1223, 103, '2003-06-21'),
+
+       (4, 1224, 104, '2003-06-21'),
+
+       (5, 1224, 104, '2003-06-20');
+ 
+INSERT INTO grades (grade_id, enrollment_id, grade_value)
+
+VALUES (5, 5, 85),
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+----------------------5
+	
+
+create table students( student_id int, student_name varchar(30), student_major varchar(30));
+
+create table courses( course_id int, course_name varchar(30), course_department varchar(30));
+
+create table enrollments( enrollment_id int, student_id int, course_id int, enrollment_date date);
+
+create table grades ( grade_id int, enrollment_id int, grade_value int);
+ 
+ 
+INSERT INTO students (student_id, student_name, student_major)
+
+VALUES (1221, 'keyaa', 'cse'),
+
+       (1222, 'srinivas', 'Math'),
+
+       (1223, 'purendar', 'History'),
+
+       (1224, 'bruce lee', 'Engineering'),
+
+       (1225, 'Ema Watson', 'Biology');
+ 
+ 
+INSERT INTO courses (course_id, course_name, course_department)
+
+VALUES (101, 'ajile', 'cse'),
+
+       (102, 'statistics', 'Math'),
+
+       (103, 'history of madgascar', 'History'),
+
+       (104, 'Mechanics', 'Engineering'),
+
+       (105, 'human anotomy', 'Biology');
+ 
+INSERT INTO enrollments (enrollment_id, student_id, course_id, enrollment_date)
+
+VALUES (1, 1221, 101, '2003-06-21'),
+
+       (2, 1222, 102, '2003-06-21'),
+
+       (3, 1223, 103, '2003-06-21'),
+
+       (4, 1224, 104, '2003-06-21'),
+
+       (5, 1224, 104, '2003-06-20');
+ 
+INSERT INTO grades (grade_id, enrollment_id, grade_value)
+
+VALUES (5, 5, 85),
+
+       (2, 2, 90),
+
+       (3, 3, 78),
+
+       (4, 4, 82);
+
+SELECT c.course_name, AVG(g.grade_value) AS average_grade
+
+FROM courses c
+
+INNER JOIN enrollments e ON c.course_id = e.course_id
+
+INNER JOIN grades g ON e.enrollment_id = g.enrollment_id
+
+GROUP BY c.course_name;
+
+[11:23] Pranitha Alluri
+CREATE TABLE customers (
+
+  customer_id INT PRIMARY KEY,
+
+  customer_name VARCHAR(255) NOT NULL,
+
+  customer_country VARCHAR(255) NOT NULL
+
+);
+ 
+CREATE TABLE product (
+
+  product_id INT PRIMARY KEY,
+
+  product_name VARCHAR(255) NOT NULL,
+
+  product_price DECIMAL(10,2) NOT NULL
+
+);
+ 
+CREATE TABLE orderss (
+
+  order_id INT PRIMARY KEY,
+
+  customer_id INT NOT NULL,
+
+  product_id INT NOT NULL,
+
+  order_date DATE NOT NULL,
+
+  order_quantity INT NOT NULL,
+
+  FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+
+  FOREIGN KEY (product_id) REFERENCES product(product_id)
+
+);
+ 
+-- Insert data with manual customer and product IDs (assuming unique IDs)
+
+INSERT INTO customers (customer_id, customer_name, customer_country)
+
+VALUES (1001, 'John Doe', 'USA'),
+
+       (1002, 'Jane Smith', 'Canada'),
+
+       (1003, 'Li Wang', 'China'),
+
+       (1004, 'Maria Garcia', 'Mexico'),
+
+       (1005, 'Peter Schmidt', 'Germany'),
+
+       (1006, 'Aisha Khan', 'India'),
+
+       (1007, 'Dimitri Petrov', 'Russia'),
+
+       (1008, 'Kim Min-soo', 'South Korea'),
+
+       (1009, 'David Hernandez', 'Spain'),
+
+       (1010, 'Omar Hassan', 'Egypt');
+ 
+INSERT INTO product (product_id, product_name, product_price)
+
+VALUES (2001, 'Laptop', 899.99),
+
+       (2002, 'Smartphone', 499.99),
+
+       (2003, 'Headphones', 79.99),
+
+       (2004, 'Shirt', 24.99),
+
+       (2005, 'Shoes', 99.99);
+ 
+INSERT INTO orderss (order_id, customer_id, product_id, order_date, order_quantity)
+
+VALUES (3001, 1001, 2001, '2024-06-01', 1),
+
+       (3002, 1001, 2003, '2024-06-10', 2),
+
+       (3003, 1002, 2002, '2024-06-05', 1),
+
+       (3004, 1003, 2004, '2024-06-15', 3),
+
+       (3005, 1004, 2005, '2024-06-20', 2),
+
+       (3006, 1005, 2001, '2024-06-12', 1),
+
+       (3007, 1006, 2003, '2024-06-22', 1),
+
+       (3008, 1007, 2002, '2024-06-18', 1),
+
+       (3009, 1008, 2004, '2024-06-23', 2),
+
+       (3010, 1009, 2005, '2024-06-24', 1);
+ 
+ 
+SELECT c.customer_country, SUM(o.order_quantity * p.product_price) AS total_revenue
+
+FROM customers c
+
+INNER JOIN orderss o ON c.customer_id = o.customer_id
+
+INNER JOIN product p ON o.product_id = p.product_id
+
+GROUP BY c.customer_country;
+
+
+       (2, 2, 90),
+
+       (3, 3, 78),
+
+       (4, 4, 82);
+
+SELECT c.course_name, AVG(g.grade_value) AS average_grade
+
+FROM courses c
+
+INNER JOIN enrollments e ON c.course_id = e.course_id
+
+INNER JOIN grades g ON e.enrollment_id = g.enrollment_id
+
+GROUP BY c.course_name;
+
