@@ -248,7 +248,7 @@ INNER JOIN grades g ON e.enrollment_id = g.enrollment_id
 
 GROUP BY c.course_name;
 
-[11:23] Pranitha Alluri
+
 CREATE TABLE customers (
 
   customer_id INT PRIMARY KEY,
