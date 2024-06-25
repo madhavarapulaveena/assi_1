@@ -176,6 +176,14 @@ VALUES (1, 1221, 101, '2003-06-21'),
 INSERT INTO grades (grade_id, enrollment_id, grade_value)
 
 VALUES (5, 5, 85),
+       (2, 2, 90),
+       (3, 3, 78),
+       (4, 4, 82);
+SELECT c.course_name, AVG(g.grade_value) AS average_grade
+FROM courses c
+INNER JOIN enrollments e ON c.course_id = e.course_id
+INNER JOIN grades g ON e.enrollment_id = g.enrollment_id
+GROUP BY c.course_name;
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
