@@ -13,10 +13,48 @@ VALUES
 SELECT SUBSTRING(string, PATINDEX('%[0-9]%', string), PATINDEX('%[0-9][^0-9]%', string + 't') - PATINDEX('%[0-9]%', 
                     string) + 1) AS Number
 FROM @temp  
+
+--------------------------------second way general------------------------------------------		
+
+DECLARE @IDX INT =Patindex('%[^0-9]%',@I)
+
+BEGIN
+
+WHILE @IDX>0
+
+BEGIN 
+
+SET @I=STUFF(@I,@IDX,1,'')
+
+SET @IDX=Patindex('%[^0-9]%',@I)
+
+END
+
+END
+
+RETURN isnull(@I,0)
+
+END
+
+
+CREATE TABLE NU(A VARCHAR(20))
+
+INSERT INTO NU VALUES('DUG3186');
+
+INSERT INTO NU VALUES('DUGS872128XHZ838');
+
+SELECT[dbo].[va] (A) AS extracted_numerics
+
+FROM NU;
+ 
+SELECT * FROM NU
+
 ------------------------------------------------------
 ---2
 
 SELECT DATEDIFF(YEAR, '2002-12-16', GETDATE()) AS YearsOld
+
+	
 
 --------------------------------------
 ----3
